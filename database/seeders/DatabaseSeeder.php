@@ -2,21 +2,37 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
+use App\Models\Product;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $electronics = Category::create(['name' => 'electronics']);
+        $jewelery = Category::create(['name' => 'jewelery']);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Product::insert([
+            [
+                'title' => 'Smartphone',
+                'description' => 'Latest smartphone model',
+                'price' => 499.99,
+                'category_id' => $electronics->id,
+                'image' => 'https://via.placeholder.com/150',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Gold Necklace',
+                'description' => 'Beautiful gold necklace',
+                'price' => 899.99,
+                'category_id' => $jewelery->id,
+                'image' => 'https://via.placeholder.com/150',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
     }
 }
+
